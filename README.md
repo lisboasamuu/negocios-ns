@@ -1,6 +1,7 @@
 # Clínica NS — MVP 1
 
-Landing page pública da **Clínica NS**, criada para apresentar o posicionamento, os tratamentos e os diferenciais da clínica, conduzindo o visitante ao agendamento pelo WhatsApp.
+Projeto desenvolvido por Samuel Lisboa
+Landing page pública da **Clínica NS** uma clínica ficctia, criada para apresentar o posicionamento, os tratamentos e os diferenciais da clínica, conduzindo o visitante ao agendamento pelo WhatsApp. Baseada em skills aprendidas de desenvolvimento de landing pages cativantes.
 
 ## Stack
 
