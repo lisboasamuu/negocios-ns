@@ -32,7 +32,7 @@ export default function ClinicaNSPage() {
 
       <main id="conteudo">
         <section id="inicio" className="hero-section scroll-mt-24" aria-labelledby="hero-title">
-          <div className="container-shell grid items-center gap-12 py-12 lg:min-h-[calc(100svh-4.75rem)] lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:py-20">
+          <div className="container-shell grid items-center gap-10 py-9 sm:py-12 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:py-20">
             <div className="relative z-10 max-w-2xl">
               <p className="eyebrow">Estética <span aria-hidden="true">•</span> Saúde <span aria-hidden="true">•</span> Bem-estar</p>
               <h1 id="hero-title" className="hero-title mt-5">
@@ -43,10 +43,10 @@ export default function ClinicaNSPage() {
                 Tratamentos estéticos personalizados para valorizar sua beleza com cuidado, tecnologia e resultados naturais.
               </p>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a className="button-primary justify-center" {...whatsappLinkProps}>
-                  Agendar minha avaliação
-                  <WhatsAppIcon className="size-5" />
+              <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+                <a className="button-primary justify-center" href="/negocio-ns/agendar/">
+                  Agendar online
+                  <ArrowUpRightIcon className="size-5" />
                 </a>
                 <a className="button-secondary justify-center" href="#tratamentos">
                   Conhecer tratamentos
@@ -54,7 +54,7 @@ export default function ClinicaNSPage() {
                 </a>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-ink/72" aria-label="Compromissos da clínica">
+              <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2.5 text-[0.8125rem] font-medium text-ink/72 sm:mt-8 sm:text-sm" aria-label="Compromissos da clínica">
                 <span className="inline-flex items-center gap-2"><CheckIcon className="size-4 text-teal-dark" />Atendimento personalizado</span>
                 <span className="inline-flex items-center gap-2"><CheckIcon className="size-4 text-teal-dark" />Protocolos individualizados</span>
               </div>
@@ -63,7 +63,7 @@ export default function ClinicaNSPage() {
             <div className="hero-visual">
               <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
               <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-aqua shadow-soft sm:rounded-[2.75rem]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.65rem] bg-aqua shadow-soft sm:rounded-[2.75rem]">
                 <Image
                   src="/images/hero-consultation.webp"
                   alt="Profissional avaliando com delicadeza a pele de uma paciente em ambiente claro"
@@ -108,7 +108,7 @@ export default function ClinicaNSPage() {
                     </span>
                     <span className="font-serif text-sm italic text-muted">0{index + 1}</span>
                   </div>
-                  <h3 className="mt-8 font-serif text-2xl text-ink">{treatment.title}</h3>
+                  <h3 className="mt-6 font-serif text-[1.4rem] text-ink sm:mt-8 sm:text-2xl">{treatment.title}</h3>
                   <p className="mt-3 leading-7 text-muted">{treatment.description}</p>
                 </article>
               ))}
@@ -119,7 +119,7 @@ export default function ClinicaNSPage() {
         <section id="sobre" className="section-pad scroll-mt-20 overflow-hidden bg-aqua-soft" aria-labelledby="about-title">
           <div className="container-shell grid items-center gap-12 lg:grid-cols-[.94fr_1.06fr] lg:gap-20">
             <div className="relative lg:order-first">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-soft sm:rounded-[2.75rem]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.65rem] shadow-soft sm:rounded-[2.75rem]">
                 <Image
                   src="/images/about-consultation.webp"
                   alt="Profissional e cliente conversando em um ambiente de atendimento acolhedor"
@@ -181,7 +181,7 @@ export default function ClinicaNSPage() {
                 id="journey-title"
                 eyebrow="Como funciona"
                 title="Do primeiro olá à sua avaliação"
-                description="Uma jornada simples, humana e organizada — conduzida diretamente com a nossa equipe pelo WhatsApp."
+                description="Uma jornada simples, humana e organizada — escolha o melhor horário online ou fale diretamente com nossa equipe."
                 align="center"
               />
             </div>
@@ -197,10 +197,10 @@ export default function ClinicaNSPage() {
             </ol>
 
             <div className="mt-8 text-center">
-              <a className="button-primary" {...whatsappLinkProps}>
-                Começar pelo WhatsApp
-                <WhatsAppIcon className="size-5" />
-              </a>
+              <div className="flex flex-col justify-center gap-3 sm:flex-row">
+                <a className="button-primary justify-center" href="/negocio-ns/agendar/">Agendar online <ArrowUpRightIcon className="size-5" /></a>
+                <a className="button-secondary justify-center" {...whatsappLinkProps}>Prefiro WhatsApp <WhatsAppIcon className="size-5" /></a>
+              </div>
             </div>
           </div>
         </section>
@@ -233,10 +233,10 @@ export default function ClinicaNSPage() {
             <div className="relative z-10 mx-auto max-w-2xl">
               <p className="text-sm font-bold uppercase tracking-[.18em] text-white/76">Seu próximo passo</p>
               <h2 id="final-cta-title" className="mt-4 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Seu momento de cuidado começa aqui.</h2>
-              <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/82">Converse com nossa equipe e agende sua avaliação.</p>
-              <a className="mt-8 inline-flex min-h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-teal-dark shadow-lg transition-transform hover:-translate-y-0.5 focus-ring" {...whatsappLinkProps}>
-                Agendar pelo WhatsApp
-                <WhatsAppIcon className="size-5" />
+              <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/82">Escolha serviço, data e horário em poucos passos.</p>
+              <a className="mt-8 inline-flex min-h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-teal-dark shadow-lg transition-transform hover:-translate-y-0.5 focus-ring" href="/negocio-ns/agendar/">
+                Agendar online
+                <ArrowUpRightIcon className="size-5" />
               </a>
             </div>
           </div>
@@ -248,8 +248,8 @@ export default function ClinicaNSPage() {
           <div className="grid gap-10 border-b border-ink/10 pb-12 lg:grid-cols-[1.1fr_.7fr_1fr]">
             <div>
               <a href="#inicio" className="brand-mark inline-flex rounded-md focus-ring" aria-label={`${business.name} — ir ao início`}>
-                <span className="brand-symbol" aria-hidden="true">N</span>
-                <span>{business.name}</span>
+                <Image className="brand-symbol" src="/favicon.svg" alt="" width={40} height={40} />
+                <span className="brand-name">Clínica <strong>NS</strong></span>
               </a>
               <p className="mt-5 max-w-sm leading-7 text-muted">Tratamentos estéticos personalizados para valorizar sua beleza com naturalidade, cuidado e tecnologia.</p>
             </div>
@@ -269,7 +269,6 @@ export default function ClinicaNSPage() {
                 <p><strong className="block text-sm text-ink">Horário</strong>{business.openingHours}</p>
                 <p><strong className="block text-sm text-ink">Instagram</strong>{business.instagram}</p>
               </address>
-              <p className="mt-5 rounded-2xl bg-aqua px-4 py-3 text-sm leading-6 text-teal-dark">Dados de contato demonstrativos. Atualize antes de publicar para clientes.</p>
             </div>
           </div>
 
