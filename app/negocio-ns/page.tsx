@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
+import { LegacyPathRedirect } from "@/components/legacy-path-redirect";
 import { SectionHeading } from "@/components/section-heading";
 import {
   ArrowDownIcon,
@@ -9,7 +10,7 @@ import {
   TreatmentIcon,
   WhatsAppIcon,
 } from "@/components/icons";
-import { business, navigation, whatsappUrl } from "@/lib/business";
+import { business, navigation, whatsappSupportActions, whatsappUrl } from "@/lib/business";
 import { differentiators, journey, treatments } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -28,10 +29,11 @@ export default function ClinicaNSPage() {
   return (
     <>
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+      <LegacyPathRedirect />
       <SiteHeader />
 
       <main id="conteudo">
-        <section id="inicio" className="hero-section scroll-mt-24" aria-labelledby="hero-title">
+        <section id="inicio" className="hero-section section-reveal scroll-mt-24" aria-labelledby="hero-title">
           <div className="container-shell grid items-center gap-10 py-9 sm:py-12 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:py-20">
             <div className="relative z-10 max-w-2xl">
               <p className="eyebrow">Estética <span aria-hidden="true">•</span> Saúde <span aria-hidden="true">•</span> Bem-estar</p>
@@ -44,7 +46,7 @@ export default function ClinicaNSPage() {
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
-                <a className="button-primary justify-center" href="/negocio-ns/agendar/">
+                <a className="button-primary justify-center" href="/clinica-ns/agendar/">
                   Agendar online
                   <ArrowUpRightIcon className="size-5" />
                 </a>
@@ -82,7 +84,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section id="tratamentos" className="section-pad scroll-mt-20 bg-white" aria-labelledby="treatments-title">
+        <section id="tratamentos" className="section-pad section-reveal scroll-mt-20 bg-white" aria-labelledby="treatments-title">
           <div className="container-shell">
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
@@ -116,7 +118,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section id="sobre" className="section-pad scroll-mt-20 overflow-hidden bg-aqua-soft" aria-labelledby="about-title">
+        <section id="sobre" className="section-pad section-reveal scroll-mt-20 overflow-hidden bg-aqua-soft" aria-labelledby="about-title">
           <div className="container-shell grid items-center gap-12 lg:grid-cols-[.94fr_1.06fr] lg:gap-20">
             <div className="relative lg:order-first">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.65rem] shadow-soft sm:rounded-[2.75rem]">
@@ -150,7 +152,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section id="diferenciais" className="section-pad scroll-mt-20 bg-ink text-white" aria-labelledby="differentials-title">
+        <section id="diferenciais" className="section-pad section-reveal scroll-mt-20 bg-ink text-white" aria-labelledby="differentials-title">
           <div className="container-shell grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="eyebrow !text-teal-light">Nosso jeito de cuidar</p>
@@ -174,7 +176,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section className="section-pad bg-canvas" aria-labelledby="journey-title">
+        <section className="section-pad section-reveal bg-canvas" aria-labelledby="journey-title">
           <div className="container-shell">
             <div>
               <SectionHeading
@@ -198,14 +200,14 @@ export default function ClinicaNSPage() {
 
             <div className="mt-8 text-center">
               <div className="flex flex-col justify-center gap-3 sm:flex-row">
-                <a className="button-primary justify-center" href="/negocio-ns/agendar/">Agendar online <ArrowUpRightIcon className="size-5" /></a>
+                <a className="button-primary justify-center" href="/clinica-ns/agendar/">Agendar online <ArrowUpRightIcon className="size-5" /></a>
                 <a className="button-secondary justify-center" {...whatsappLinkProps}>Prefiro WhatsApp <WhatsAppIcon className="size-5" /></a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="section-pad bg-white" aria-labelledby="stories-title">
+        <section className="section-pad section-reveal bg-white" aria-labelledby="stories-title">
           <div className="container-shell">
             <div className="future-stories">
               <div>
@@ -226,7 +228,29 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section className="px-4 pb-4 sm:px-6 sm:pb-6" aria-labelledby="final-cta-title">
+        <section className="section-pad section-reveal bg-aqua-soft" aria-labelledby="help-title">
+          <div className="container-shell">
+            <SectionHeading
+              id="help-title"
+              eyebrow="Precisa de ajuda?"
+              title="A equipe continua com você pelo WhatsApp."
+              description="Para alterações ou dúvidas, escolha uma opção e envie a mensagem pronta. Nenhuma mudança acontece sem a confirmação da equipe."
+              align="center"
+            />
+            <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
+              {whatsappSupportActions.map((action) => (
+                <a className="support-card group" href={action.href} key={action.title} target="_blank" rel="noreferrer">
+                  <span className="support-card-icon"><WhatsAppIcon className="size-5" /></span>
+                  <h3>{action.title}</h3>
+                  <p>{action.description}</p>
+                  <span className="text-link mt-auto pt-5">Abrir conversa <ArrowUpRightIcon className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-reveal px-4 pb-4 sm:px-6 sm:pb-6" aria-labelledby="final-cta-title">
           <div className="container-shell relative overflow-hidden rounded-[2rem] bg-teal px-6 py-14 text-center text-white sm:rounded-[3rem] sm:px-10 sm:py-20">
             <div className="cta-ring cta-ring-one" aria-hidden="true" />
             <div className="cta-ring cta-ring-two" aria-hidden="true" />
@@ -234,7 +258,7 @@ export default function ClinicaNSPage() {
               <p className="text-sm font-bold uppercase tracking-[.18em] text-white/76">Seu próximo passo</p>
               <h2 id="final-cta-title" className="mt-4 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Seu momento de cuidado começa aqui.</h2>
               <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/82">Escolha serviço, data e horário em poucos passos.</p>
-              <a className="mt-8 inline-flex min-h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-teal-dark shadow-lg transition-transform hover:-translate-y-0.5 focus-ring" href="/negocio-ns/agendar/">
+              <a className="mt-8 inline-flex min-h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-teal-dark shadow-lg transition-transform hover:-translate-y-0.5 focus-ring" href="/clinica-ns/agendar/">
                 Agendar online
                 <ArrowUpRightIcon className="size-5" />
               </a>
@@ -267,7 +291,7 @@ export default function ClinicaNSPage() {
                 <p><strong className="block text-sm text-ink">WhatsApp</strong>{business.whatsappDisplay}</p>
                 <p><strong className="block text-sm text-ink">Endereço</strong>{business.address}</p>
                 <p><strong className="block text-sm text-ink">Horário</strong>{business.openingHours}</p>
-                <p><strong className="block text-sm text-ink">Instagram</strong>{business.instagram}</p>
+                <p><strong className="block text-sm text-ink">Instagram</strong><a className="footer-link focus-ring" href={business.instagramUrl} target="_blank" rel="noreferrer">{business.instagram}</a></p>
               </address>
             </div>
           </div>

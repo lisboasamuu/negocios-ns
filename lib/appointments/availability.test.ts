@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   generateAvailableSlots,
+  isServiceAllowedForWeekday,
   mapBookingError,
   rangesOverlap,
   timeToMinutes,
@@ -50,5 +51,25 @@ describe("availability rules", () => {
 
   it("maps database concurrency conflicts to a recoverable message", () => {
     expect(mapBookingError("slot_conflict")).toContain("acabou de ser reservado");
+  });
+
+  it("includes active current and future services when the weekday uses all services", () => {
+    for (const serviceId of ["current-service", "future-service"]) {
+      expect(isServiceAllowedForWeekday({ serviceId, serviceActive: true, mode: "all", selectedServiceIds: [] })).toBe(true);
+    }
+  });
+
+  it("limits selected weekdays to their explicit services", () => {
+    expect(isServiceAllowedForWeekday({ serviceId: "facial", serviceActive: true, mode: "selected", selectedServiceIds: ["facial"] })).toBe(true);
+    expect(isServiceAllowedForWeekday({ serviceId: "massage", serviceActive: true, mode: "selected", selectedServiceIds: ["facial"] })).toBe(false);
+  });
+
+  it("never offers inactive services regardless of the weekday mode", () => {
+    expect(isServiceAllowedForWeekday({ serviceId: "inactive", serviceActive: false, mode: "all", selectedServiceIds: [] })).toBe(false);
+    expect(isServiceAllowedForWeekday({ serviceId: "inactive", serviceActive: false, mode: "selected", selectedServiceIds: ["inactive"] })).toBe(false);
+  });
+
+  it("maps weekday restrictions to a clear recoverable message", () => {
+    expect(mapBookingError("service_unavailable_on_weekday")).toContain("não é oferecido");
   });
 });

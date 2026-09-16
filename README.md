@@ -1,12 +1,13 @@
-# Clínica NS — MVP 2
+# Clínica NS — MVP 2.1
 
-Criado por Samuel Lisboa; Site mobile-first para uma clínica de estética fictícia, com landing page, agendamento online sem conta e painel administrativo protegido. O WhatsApp continua disponível como canal alternativo. Mais pra frente irei implementar formas de pagamento e gateways.
+Site mobile-first para uma clínica de estética fictícia, com landing page, agendamento online sem conta e painel administrativo protegido. O WhatsApp continua disponível como canal alternativo.
 
 ## O que está incluído
 
-- Landing page responsiva em `/negocio-ns`.
-- Agendamento público em `/negocio-ns/agendar`: serviço, data, horário real, dados, revisão e confirmação.
-- Painel em `/negocio-ns/agenda`: agenda diária, detalhes, cancelamento lógico, cadastro manual, serviços, horários e bloqueios.
+- Landing page responsiva em `/clinica-ns`, com atalhos de ajuda pelo WhatsApp.
+- Agendamento público em `/clinica-ns/agendar`: serviço, data, horário real, dados, revisão e confirmação.
+- Painel em `/clinica-ns/agenda`: agenda diária, detalhes, cancelamento lógico, cadastro manual, serviços, horários, disponibilidade semanal e bloqueios.
+- Regras por dia da semana no modo “todos os serviços” ou “serviços específicos”.
 - Autenticação administrativa pelo Supabase Auth, sem cadastro público.
 - PostgreSQL como fonte de verdade para disponibilidade e autorização.
 - Proteção contra horários duplicados por constraint GiST, validação transacional e RLS.
@@ -14,7 +15,7 @@ Criado por Samuel Lisboa; Site mobile-first para uma clínica de estética fict�
 - Estados de carregamento, erro, vazio, sucesso e conflito de concorrência.
 - Testes unitários, testes de contrato da migração e suíte pgTAP para o banco.
 
-Pagamentos não fazem parte deste MVP ainda
+Pagamentos não fazem parte deste MVP.
 
 ## Stack
 
@@ -27,9 +28,11 @@ Pagamentos não fazem parte deste MVP ainda
 
 | Rota | Acesso | Função |
 | --- | --- | --- |
-| `/negocio-ns` | Público | Site institucional e conversão |
-| `/negocio-ns/agendar` | Público | Agendamento sem conta |
-| `/negocio-ns/agenda` | Administrador | Gestão da clínica |
+| `/clinica-ns` | Público | Site institucional e conversão |
+| `/clinica-ns/agendar` | Público | Agendamento sem conta |
+| `/clinica-ns/agenda` | Administrador | Gestão da clínica |
+
+As rotas antigas em `/negocio-ns`, incluindo `/agendar` e `/agenda`, redirecionam permanentemente para o namespace canônico. Na Vercel isso é feito por `vercel.json`; o fallback do frontend preserva query string e hash em hospedagens estáticas.
 
 ## Configuração local
 
@@ -57,6 +60,12 @@ Com a CLI do Supabase autenticada e o projeto vinculado:
 npx supabase link --project-ref SEU_PROJECT_REF
 npx supabase db push
 ```
+
+O `db push` aplica as migrações em ordem. A migração `20260916070000_mvp21_weekday_services.sql` cria as regras semanais com todos os sete dias no modo `all`, portanto não altera a disponibilidade anterior nem cancela agendamentos futuros.
+
+### Impacto e rollback
+
+A migração é aditiva: cria duas tabelas de configuração, atualiza as RPCs de disponibilidade/confirmação e corrige a validação de telefones formatados. Ela não apaga nem modifica agendamentos existentes. Em produção, prefira uma nova migração corretiva em vez de editar ou desfazer uma migração já aplicada. Se um rollback controlado for realmente necessário, publique primeiro a versão anterior do frontend, restaure as definições anteriores das RPCs em uma nova migração e só então remova `weekday_service_selections`, `weekday_service_rules` e `save_weekday_service_rule`, após backup.
 
 Para um ambiente local do Supabase, a migração e o seed podem ser recriados com:
 
@@ -92,7 +101,7 @@ Não habilite cadastro público. Um usuário autenticado que não estiver em `ad
 npm run dev
 ```
 
-Acesse `http://localhost:3000/negocio-ns/`.
+Acesse `http://localhost:3000/clinica-ns/`.
 
 ## Validação
 
@@ -119,18 +128,20 @@ O build estático é gerado em `out/`. As variáveis `NEXT_PUBLIC_*` são incorp
 - A criação de bloqueios e de atendimentos é serializada para evitar uma corrida entre tabelas.
 - Cancelar altera o status para `cancelled`; o histórico não é apagado.
 - Serviços inativos deixam de aparecer para o cliente, mas permanecem ligados ao histórico.
+- O modo “Todos os serviços” inclui automaticamente qualquer serviço ativo criado no futuro.
+- O modo “Serviços específicos” só libera os serviços marcados naquele dia; sem marcações, o dia não oferece novos horários.
+- A regra semanal é aplicada tanto ao cálculo de horários quanto novamente no banco durante a confirmação pública ou manual.
+- Alterar a regra nunca cancela agendamentos já confirmados; o painel avisa quando há compromissos futuros fora da nova configuração.
 - Dados de clientes não têm permissão de leitura anônima.
 
 ## Estrutura principal
 
 ```text
-app/negocio-ns/
-  page.tsx                 Landing page
-  agendar/page.tsx         Fluxo público
-  agenda/page.tsx          Painel administrativo
+app/clinica-ns/             Rotas públicas canônicas
+app/negocio-ns/             Implementação compartilhada e fallback das rotas antigas
 components/
   booking/booking-flow.tsx
-  admin/                   Agenda e configurações
+  admin/                    Agenda, disponibilidade e configurações
 lib/
   appointments/            Datas, tipos, regras e testes
   supabase/client.ts       Cliente público configurável
@@ -146,6 +157,21 @@ supabase/
 - Conteúdo institucional: `lib/content.ts`.
 - Serviços e expediente iniciais: `supabase/seed.sql`.
 - Intervalo padrão da grade: registro único em `public.booking_settings`.
+- Serviços oferecidos em cada dia: painel **Horários → Serviços por dia da semana**.
 - Paleta e componentes visuais: `app/globals.css`.
 
-Antes de uso comercial, substitua endereço e Instagram demonstrativos, revise serviços, durações, expediente e a política de privacidade aplicável ao negócio.
+Antes de uso comercial, revise serviços, durações, expediente, disponibilidade semanal e a política de privacidade aplicável ao negócio.
+
+## Atualizar uma instalação do MVP 2
+
+Depois de substituir os arquivos pelo MVP 2.1, mantenha seu `.env.local` e execute:
+
+```bash
+npm install
+npx supabase link --project-ref SEU_PROJECT_REF
+npx supabase db push
+npm run test
+npm run build
+```
+
+O endereço e o Instagram ficam em `lib/business.ts`. Os botões de reagendamento, cancelamento e dúvida apenas abrem mensagens prontas no WhatsApp; não alteram registros automaticamente.

@@ -22,6 +22,21 @@ export function rangesOverlap(first: MinuteRange, second: MinuteRange) {
   return first.start < second.end && second.start < first.end;
 }
 
+export function isServiceAllowedForWeekday({
+  serviceId,
+  serviceActive,
+  mode,
+  selectedServiceIds,
+}: {
+  serviceId: string;
+  serviceActive: boolean;
+  mode: "all" | "selected";
+  selectedServiceIds: readonly string[];
+}) {
+  if (!serviceActive) return false;
+  return mode === "all" || selectedServiceIds.includes(serviceId);
+}
+
 export function generateAvailableSlots({
   date,
   durationMinutes,
@@ -60,6 +75,9 @@ export function mapBookingError(message?: string) {
   }
   if (message.includes("service_inactive")) {
     return "Esse serviço não está mais disponível. Escolha outro serviço.";
+  }
+  if (message.includes("service_unavailable_on_weekday")) {
+    return "Esse serviço não é oferecido nesse dia da semana. Escolha outra data.";
   }
   if (message.includes("outside_business_hours")) {
     return "Esse não é um horário válido de atendimento. Escolha uma opção exibida na agenda.";

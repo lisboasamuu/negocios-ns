@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { BookingFlow } from "@/components/booking/booking-flow";
 import { WhatsAppIcon } from "@/components/icons";
 import { business, whatsappUrl } from "@/lib/business";
+import { LegacyPathRedirect } from "@/components/legacy-path-redirect";
 
 export const metadata: Metadata = {
   title: "Agendar | Clínica NS",
@@ -13,9 +14,10 @@ export const metadata: Metadata = {
 export default function BookingPage() {
   return (
     <main className="min-h-svh bg-aqua-soft px-3 py-3 sm:px-6 sm:py-6 lg:py-10">
+      <LegacyPathRedirect />
       <div className="mx-auto max-w-5xl">
         <header className="mb-4 flex items-center justify-between gap-4 sm:mb-6">
-          <Link className="brand-mark rounded-md focus-ring" href="/negocio-ns/">
+          <Link className="brand-mark rounded-md focus-ring" href="/clinica-ns/">
             <Image className="brand-symbol" src="/favicon.svg" alt="" width={40} height={40} priority />
             <span className="brand-name">Clínica <strong>NS</strong></span>
           </Link>

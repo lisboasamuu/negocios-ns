@@ -3,6 +3,7 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import type { BusinessHour } from "@/lib/appointments/types";
 import { getSupabaseClient } from "@/lib/supabase/client";
+import { WeeklyServicesPanel } from "@/components/admin/weekly-services-panel";
 
 const weekdays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
 
@@ -61,7 +62,8 @@ export function HoursPanel() {
   }
 
   return (
-    <section className="admin-grid">
+    <div className="grid gap-5">
+      <section className="admin-grid">
       <div className="admin-card">
         <h2 className="admin-title">Horários de atendimento</h2>
         <p className="admin-copy">Você pode cadastrar mais de um intervalo no mesmo dia.</p>
@@ -96,6 +98,8 @@ export function HoursPanel() {
         </div>
         <button className="button-primary mt-5" type="submit">Adicionar</button>
       </form>
-    </section>
+      </section>
+      <WeeklyServicesPanel />
+    </div>
   );
 }

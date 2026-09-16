@@ -33,7 +33,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a className="header-cta button-primary" href="/negocio-ns/agendar/" aria-label="Agendar avaliação online">
+        <a className="header-cta button-primary" href="/clinica-ns/agendar/" aria-label="Agendar avaliação online">
           <span className="sm:hidden">Agendar</span>
           <span className="hidden sm:inline">Agendar avaliação</span>
           <ArrowUpRightIcon className="hidden size-3.5 sm:block" />
@@ -64,7 +64,7 @@ export function SiteHeader() {
                 {item.label}
               </a>
             ))}
-            <a className="button-primary mt-4 justify-center" href="/negocio-ns/agendar/" onClick={() => setIsOpen(false)}>
+            <a className="button-primary mt-4 justify-center" href="/clinica-ns/agendar/" onClick={() => setIsOpen(false)}>
               Agendar online
               <ArrowUpRightIcon className="size-4" />
             </a>

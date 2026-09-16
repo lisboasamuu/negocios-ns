@@ -41,6 +41,19 @@ export type BusinessHour = {
   active: boolean;
 };
 
+export type WeekdayServiceMode = "all" | "selected";
+
+export type WeekdayServiceRule = {
+  weekday: number;
+  mode: WeekdayServiceMode;
+  updated_at?: string;
+};
+
+export type WeekdayServiceSelection = {
+  weekday: number;
+  service_id: string;
+};
+
 export type BlockedPeriod = {
   id: string;
   starts_at: string;

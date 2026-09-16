@@ -318,6 +318,47 @@ button:focus-visible {
   padding: clamp(1.75rem, 5vw, 4rem);
 }
 
+.support-card {
+  display: flex;
+  min-height: 15rem;
+  flex-direction: column;
+  border: 1px solid rgba(22, 40, 44, 0.09);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 1.35rem;
+  color: #16282c;
+  box-shadow: 0 16px 42px rgba(22, 40, 44, 0.05);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.support-card:hover {
+  border-color: rgba(50, 141, 153, 0.38);
+  box-shadow: 0 22px 52px rgba(22, 40, 44, 0.09);
+  transform: translateY(-4px);
+}
+
+.support-card-icon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 999px;
+  background: #dff1f3;
+  color: #287d87;
+}
+
+.support-card h3 {
+  margin-top: 1.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+}
+
+.support-card p {
+  margin-top: 0.6rem;
+  color: #64777b;
+  line-height: 1.65;
+}
+
 .cta-ring {
   position: absolute;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -526,12 +567,17 @@ button:focus-visible {
   background: white;
   color: #287d87;
   font-weight: 700;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .slot-grid button:hover,
 .slot-grid button.is-selected {
   border-color: #328d99;
   background: #edf7f8;
+}
+
+.slot-grid button:hover {
+  transform: translateY(-2px);
 }
 
 .review-list {
@@ -587,6 +633,13 @@ button:disabled {
   color: #64777b;
   font-size: 0.875rem;
   font-weight: 700;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.admin-tabs button:hover {
+  border-color: rgba(50, 141, 153, 0.45);
+  color: #287d87;
+  transform: translateY(-1px);
 }
 
 .admin-tabs button.is-active {
@@ -624,7 +677,7 @@ button:disabled {
 
 .admin-quiet-button,
 .danger-link {
-  min-height: 2.3rem;
+  min-height: 2.75rem;
   border: 1px solid rgba(22, 40, 44, 0.12);
   border-radius: 0.7rem;
   background: white;
@@ -730,6 +783,122 @@ button:disabled {
   padding: 1rem;
   color: #276343;
   font-size: 0.9rem;
+}
+
+.admin-status-pill {
+  width: fit-content;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #edf7f8;
+  padding: 0.45rem 0.75rem;
+  color: #287d87;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.weekday-rule-card {
+  border: 1px solid rgba(22, 40, 44, 0.09);
+  border-radius: 1rem;
+  background: #f7fbfc;
+  padding: 1rem;
+}
+
+.weekday-mode-grid {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.weekday-mode-grid label {
+  display: flex;
+  min-height: 3.5rem;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid rgba(22, 40, 44, 0.12);
+  border-radius: 0.85rem;
+  background: white;
+  padding: 0.7rem 0.8rem;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.weekday-mode-grid label:hover,
+.weekday-mode-grid label.is-selected {
+  border-color: #55b8c3;
+  background: #edf7f8;
+}
+
+.weekday-mode-grid label:hover {
+  transform: translateY(-1px);
+}
+
+.weekday-mode-grid input,
+.service-check input {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  accent-color: #328d99;
+}
+
+.weekday-mode-grid span {
+  display: flex;
+  flex-direction: column;
+}
+
+.weekday-mode-grid strong,
+.service-check span {
+  font-size: 0.84rem;
+}
+
+.weekday-mode-grid small {
+  margin-top: 0.1rem;
+  color: #64777b;
+  font-size: 0.72rem;
+}
+
+.service-check {
+  display: flex;
+  min-height: 2.75rem;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid rgba(22, 40, 44, 0.1);
+  border-radius: 0.75rem;
+  background: white;
+  padding: 0.65rem 0.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .section-reveal {
+    animation: section-enter 560ms cubic-bezier(.2, .75, .25, 1) both;
+  }
+
+  .treatment-card,
+  .journey-card,
+  .support-card {
+    animation: card-enter 480ms cubic-bezier(.2, .75, .25, 1) both;
+  }
+
+  .treatment-card:nth-child(2),
+  .journey-card:nth-child(2),
+  .support-card:nth-child(2) {
+    animation-delay: 70ms;
+  }
+
+  .treatment-card:nth-child(3),
+  .journey-card:nth-child(3),
+  .support-card:nth-child(3) {
+    animation-delay: 140ms;
+  }
+
+  @keyframes section-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes card-enter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
 
 @media (min-width: 640px) {
@@ -841,6 +1010,10 @@ button:disabled {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .weekday-mode-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

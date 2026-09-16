@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/negocio-ns",
+      "destination": "/clinica-ns",
+      "permanent": true
+    },
+    {
+      "source": "/negocio-ns/agendar",
+      "destination": "/clinica-ns/agendar",
+      "permanent": true
+    },
+    {
+      "source": "/negocio-ns/agenda",
+      "destination": "/clinica-ns/agenda",
+      "permanent": true
+    }
+  ]
+}

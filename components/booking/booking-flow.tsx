@@ -149,6 +149,10 @@ export function BookingFlow({ compact = false }: { compact?: boolean }) {
       if (requestError.message.includes("slot_conflict")) {
         setStep(2);
         await loadSlots(selectedService.id, date);
+      } else if (requestError.message.includes("service_unavailable_on_weekday")) {
+        setStep(1);
+        setSlots([]);
+        setSlot(null);
       }
       return;
     }
@@ -180,7 +184,7 @@ export function BookingFlow({ compact = false }: { compact?: boolean }) {
           <a className="button-primary justify-center" href={whatsappUrl} target="_blank" rel="noreferrer">
             Falar no WhatsApp <WhatsAppIcon className="size-5" />
           </a>
-          <Link className="button-secondary justify-center" href="/negocio-ns/">Voltar ao site</Link>
+          <Link className="button-secondary justify-center" href="/clinica-ns/">Voltar ao site</Link>
         </div>
       </section>
     );
