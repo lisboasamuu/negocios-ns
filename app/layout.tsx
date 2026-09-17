@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Clínica NS | Estética e Bem-estar",
+  title: "Clínica Lisboa | Estética e Bem-estar",
   description:
     "Tratamentos estéticos personalizados para valorizar sua beleza com naturalidade, cuidado e tecnologia.",
   icons: {

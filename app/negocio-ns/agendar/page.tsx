@@ -1,14 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { BookingFlow } from "@/components/booking/booking-flow";
 import { WhatsAppIcon } from "@/components/icons";
 import { business, whatsappUrl } from "@/lib/business";
 import { LegacyPathRedirect } from "@/components/legacy-path-redirect";
+import { BrandLockup } from "@/components/brand-lockup";
 
 export const metadata: Metadata = {
-  title: "Agendar | Clínica NS",
-  description: "Escolha o serviço, a data e o horário da sua avaliação na Clínica NS.",
+  title: "Agendar | Clínica Lisboa",
+  description: "Escolha o serviço, a data e o horário da sua avaliação na Clínica Lisboa.",
 };
 
 export default function BookingPage() {
@@ -17,9 +17,8 @@ export default function BookingPage() {
       <LegacyPathRedirect />
       <div className="mx-auto max-w-5xl">
         <header className="mb-4 flex items-center justify-between gap-4 sm:mb-6">
-          <Link className="brand-mark rounded-md focus-ring" href="/clinica-ns/">
-            <Image className="brand-symbol" src="/favicon.svg" alt="" width={40} height={40} priority />
-            <span className="brand-name">Clínica <strong>NS</strong></span>
+          <Link className="brand-mark rounded-md focus-ring" href="/clinica-lisboa/">
+            <BrandLockup priority />
           </Link>
           <a className="inline-flex items-center gap-2 text-sm font-bold text-teal-dark" href={whatsappUrl} target="_blank" rel="noreferrer">
             <WhatsAppIcon className="size-5" />

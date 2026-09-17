@@ -2,6 +2,8 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { LegacyPathRedirect } from "@/components/legacy-path-redirect";
+import { BrandLockup } from "@/components/brand-lockup";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { SectionHeading } from "@/components/section-heading";
 import {
   ArrowDownIcon,
@@ -14,7 +16,7 @@ import { business, navigation, whatsappSupportActions, whatsappUrl } from "@/lib
 import { differentiators, journey, treatments } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Clínica NS | Estética e Bem-estar",
+  title: "Clínica Lisboa | Estética e Bem-estar",
   description:
     "Tratamentos estéticos personalizados para valorizar sua beleza com naturalidade, cuidado e tecnologia.",
 };
@@ -30,10 +32,11 @@ export default function ClinicaNSPage() {
     <>
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <LegacyPathRedirect />
+      <ScrollReveal />
       <SiteHeader />
 
       <main id="conteudo">
-        <section id="inicio" className="hero-section section-reveal scroll-mt-24" aria-labelledby="hero-title">
+        <section id="inicio" className="hero-section section-reveal scroll-mt-24" aria-labelledby="hero-title" data-reveal>
           <div className="container-shell grid items-center gap-10 py-9 sm:py-12 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.02fr_.98fr] lg:gap-16 lg:py-20">
             <div className="relative z-10 max-w-2xl">
               <p className="eyebrow">Estética <span aria-hidden="true">•</span> Saúde <span aria-hidden="true">•</span> Bem-estar</p>
@@ -46,7 +49,7 @@ export default function ClinicaNSPage() {
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
-                <a className="button-primary justify-center" href="/clinica-ns/agendar/">
+                <a className="button-primary justify-center" href="/clinica-lisboa/agendar/">
                   Agendar online
                   <ArrowUpRightIcon className="size-5" />
                 </a>
@@ -84,7 +87,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section id="tratamentos" className="section-pad section-reveal scroll-mt-20 bg-white" aria-labelledby="treatments-title">
+        <section id="tratamentos" className="section-pad section-reveal scroll-mt-20 bg-white" aria-labelledby="treatments-title" data-reveal>
           <div className="container-shell">
             <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
               <div>
@@ -103,7 +106,7 @@ export default function ClinicaNSPage() {
 
             <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {treatments.map((treatment, index) => (
-                <article key={treatment.title} className="treatment-card group">
+                <article key={treatment.title} className="treatment-card group" data-reveal>
                   <div className="flex items-start justify-between gap-4">
                     <span className="grid size-12 place-items-center rounded-2xl bg-aqua text-teal-dark transition-colors group-hover:bg-teal group-hover:text-white">
                       <TreatmentIcon name={treatment.icon} className="size-6" />
@@ -118,7 +121,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section id="sobre" className="section-pad section-reveal scroll-mt-20 overflow-hidden bg-aqua-soft" aria-labelledby="about-title">
+        <section id="sobre" className="section-pad section-reveal scroll-mt-20 overflow-hidden bg-aqua-soft" aria-labelledby="about-title" data-reveal>
           <div className="container-shell grid items-center gap-12 lg:grid-cols-[.94fr_1.06fr] lg:gap-20">
             <div className="relative lg:order-first">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.65rem] shadow-soft sm:rounded-[2.75rem]">
@@ -136,13 +139,13 @@ export default function ClinicaNSPage() {
             </div>
 
             <div className="max-w-xl pt-5 lg:pt-0">
-              <SectionHeading id="about-title" eyebrow="A experiência NS" title="Estética que respeita quem você é." />
+              <SectionHeading id="about-title" eyebrow="A experiência Lisboa" title="Estética que respeita quem você é." />
               <p className="body-copy mt-6">
-                Na Clínica NS, cada atendimento começa entendendo você. Nosso objetivo é criar protocolos personalizados que valorizem seus traços e promovam bem-estar sem abrir mão da naturalidade.
+                Na Clínica Lisboa, cada atendimento começa entendendo você. Nosso objetivo é criar protocolos personalizados que valorizem seus traços e promovam bem-estar sem abrir mão da naturalidade.
               </p>
               <div className="mt-8 border-l-2 border-teal pl-5">
                 <p className="font-serif text-xl italic leading-relaxed text-ink">“Cuidar não é transformar. É revelar, com delicadeza, o que faz você se sentir bem.”</p>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-[.14em] text-teal-dark">Conceito Clínica NS</p>
+                <p className="mt-3 text-sm font-semibold uppercase tracking-[.14em] text-teal-dark">Conceito Clínica Lisboa</p>
               </div>
               <a className="button-secondary mt-8" {...whatsappLinkProps}>
                 Falar com a equipe
@@ -152,11 +155,11 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section id="diferenciais" className="section-pad section-reveal scroll-mt-20 bg-ink text-white" aria-labelledby="differentials-title">
+        <section id="diferenciais" className="section-pad section-reveal scroll-mt-20 bg-ink text-white" aria-labelledby="differentials-title" data-reveal>
           <div className="container-shell grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
             <div className="lg:sticky lg:top-32 lg:self-start">
               <p className="eyebrow !text-teal-light">Nosso jeito de cuidar</p>
-              <h2 id="differentials-title" className="section-title mt-4 !text-white">Por que escolher a Clínica NS?</h2>
+              <h2 id="differentials-title" className="section-title mt-4 !text-white">Por que escolher a Clínica Lisboa?</h2>
               <p className="mt-5 max-w-md text-lg leading-8 text-white/62">
                 Uma experiência construída para unir intenção, segurança e a leveza de resultados que preservam sua essência.
               </p>
@@ -164,7 +167,7 @@ export default function ClinicaNSPage() {
 
             <div className="divide-y divide-white/12 border-y border-white/12">
               {differentiators.map((item) => (
-                <article key={item.number} className="grid gap-4 py-7 sm:grid-cols-[4rem_1fr] sm:py-8">
+                <article key={item.number} className="grid gap-4 py-7 sm:grid-cols-[4rem_1fr] sm:py-8" data-reveal>
                   <span className="font-serif text-xl italic text-teal-light">{item.number}</span>
                   <div>
                     <h3 className="font-serif text-2xl">{item.title}</h3>
@@ -176,7 +179,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section className="section-pad section-reveal bg-canvas" aria-labelledby="journey-title">
+        <section className="section-pad section-reveal bg-canvas" aria-labelledby="journey-title" data-reveal>
           <div className="container-shell">
             <div>
               <SectionHeading
@@ -190,7 +193,7 @@ export default function ClinicaNSPage() {
 
             <ol className="relative mt-14 grid gap-5 lg:grid-cols-3">
               {journey.map((step) => (
-                <li key={step.number} className="journey-card">
+                <li key={step.number} className="journey-card" data-reveal>
                   <span className="grid size-11 place-items-center rounded-full bg-teal font-serif text-xl text-white">{step.number}</span>
                   <h3 className="mt-6 font-serif text-2xl text-ink">{step.title}</h3>
                   <p className="mt-3 leading-7 text-muted">{step.description}</p>
@@ -200,14 +203,14 @@ export default function ClinicaNSPage() {
 
             <div className="mt-8 text-center">
               <div className="flex flex-col justify-center gap-3 sm:flex-row">
-                <a className="button-primary justify-center" href="/clinica-ns/agendar/">Agendar online <ArrowUpRightIcon className="size-5" /></a>
+                <a className="button-primary justify-center" href="/clinica-lisboa/agendar/">Agendar online <ArrowUpRightIcon className="size-5" /></a>
                 <a className="button-secondary justify-center" {...whatsappLinkProps}>Prefiro WhatsApp <WhatsAppIcon className="size-5" /></a>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="section-pad section-reveal bg-white" aria-labelledby="stories-title">
+        <section className="section-pad section-reveal bg-white" aria-labelledby="stories-title" data-reveal>
           <div className="container-shell">
             <div className="future-stories">
               <div>
@@ -228,7 +231,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section className="section-pad section-reveal bg-aqua-soft" aria-labelledby="help-title">
+        <section className="section-pad section-reveal bg-aqua-soft" aria-labelledby="help-title" data-reveal>
           <div className="container-shell">
             <SectionHeading
               id="help-title"
@@ -239,7 +242,7 @@ export default function ClinicaNSPage() {
             />
             <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
               {whatsappSupportActions.map((action) => (
-                <a className="support-card group" href={action.href} key={action.title} target="_blank" rel="noreferrer">
+                <a className="support-card group" href={action.href} key={action.title} target="_blank" rel="noreferrer" data-reveal>
                   <span className="support-card-icon"><WhatsAppIcon className="size-5" /></span>
                   <h3>{action.title}</h3>
                   <p>{action.description}</p>
@@ -250,7 +253,7 @@ export default function ClinicaNSPage() {
           </div>
         </section>
 
-        <section className="section-reveal px-4 pb-4 sm:px-6 sm:pb-6" aria-labelledby="final-cta-title">
+        <section className="section-reveal px-4 pb-4 sm:px-6 sm:pb-6" aria-labelledby="final-cta-title" data-reveal>
           <div className="container-shell relative overflow-hidden rounded-[2rem] bg-teal px-6 py-14 text-center text-white sm:rounded-[3rem] sm:px-10 sm:py-20">
             <div className="cta-ring cta-ring-one" aria-hidden="true" />
             <div className="cta-ring cta-ring-two" aria-hidden="true" />
@@ -258,7 +261,7 @@ export default function ClinicaNSPage() {
               <p className="text-sm font-bold uppercase tracking-[.18em] text-white/76">Seu próximo passo</p>
               <h2 id="final-cta-title" className="mt-4 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Seu momento de cuidado começa aqui.</h2>
               <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/82">Escolha serviço, data e horário em poucos passos.</p>
-              <a className="mt-8 inline-flex min-h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-teal-dark shadow-lg transition-transform hover:-translate-y-0.5 focus-ring" href="/clinica-ns/agendar/">
+              <a className="mt-8 inline-flex min-h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-bold text-teal-dark shadow-lg transition-transform hover:-translate-y-0.5 focus-ring" href="/clinica-lisboa/agendar/">
                 Agendar online
                 <ArrowUpRightIcon className="size-5" />
               </a>
@@ -272,8 +275,7 @@ export default function ClinicaNSPage() {
           <div className="grid gap-10 border-b border-ink/10 pb-12 lg:grid-cols-[1.1fr_.7fr_1fr]">
             <div>
               <a href="#inicio" className="brand-mark inline-flex rounded-md focus-ring" aria-label={`${business.name} — ir ao início`}>
-                <Image className="brand-symbol" src="/favicon.svg" alt="" width={40} height={40} />
-                <span className="brand-name">Clínica <strong>NS</strong></span>
+                <BrandLockup />
               </a>
               <p className="mt-5 max-w-sm leading-7 text-muted">Tratamentos estéticos personalizados para valorizar sua beleza com naturalidade, cuidado e tecnologia.</p>
             </div>

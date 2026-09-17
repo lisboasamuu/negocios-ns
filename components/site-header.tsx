@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { business, navigation } from "@/lib/business";
 import { ArrowUpRightIcon, CloseIcon, MenuIcon } from "@/components/icons";
+import { BrandLockup } from "@/components/brand-lockup";
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +21,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-ink/8 bg-canvas/90 backdrop-blur-xl">
       <div className="container-shell flex h-16 items-center gap-2 sm:h-[4.5rem] sm:gap-4">
         <a href="#inicio" className="brand-mark mr-auto min-w-0 rounded-md focus-ring" aria-label={`${business.name} — ir ao início`}>
-          <Image className="brand-symbol" src="/favicon.svg" alt="" width={40} height={40} priority />
-          <span className="brand-name">Clínica <strong>NS</strong></span>
+          <BrandLockup priority />
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
@@ -33,7 +32,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a className="header-cta button-primary" href="/clinica-ns/agendar/" aria-label="Agendar avaliação online">
+        <a className="header-cta button-primary" href="/clinica-lisboa/agendar/" aria-label="Agendar avaliação online">
           <span className="sm:hidden">Agendar</span>
           <span className="hidden sm:inline">Agendar avaliação</span>
           <ArrowUpRightIcon className="hidden size-3.5 sm:block" />
@@ -64,7 +63,7 @@ export function SiteHeader() {
                 {item.label}
               </a>
             ))}
-            <a className="button-primary mt-4 justify-center" href="/clinica-ns/agendar/" onClick={() => setIsOpen(false)}>
+            <a className="button-primary mt-4 justify-center" href="/clinica-lisboa/agendar/" onClick={() => setIsOpen(false)}>
               Agendar online
               <ArrowUpRightIcon className="size-4" />
             </a>

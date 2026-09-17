@@ -1,14 +1,14 @@
 export const business = {
-  name: "Clínica NS",
-  shortName: "NS",
+  name: "Clínica Lisboa",
+  shortName: "S",
   tagline: "Sua beleza, com naturalidade.",
   whatsapp: "5519995376340",
   whatsappDisplay: "(19) 99537-6340",
   whatsappMessage:
-    "Olá! Conheci a Clínica NS pelo site e gostaria de agendar uma avaliação.",
-  address: "Rua Nathali Samuel, 123, Cidade NS",
-  instagram: "@codigonsbr",
-  instagramUrl: "https://www.instagram.com/codigonsbr",
+    "Olá! Conheci a Clínica Lisboa pelo site e gostaria de agendar uma avaliação.",
+  address: "Rua Glalcimar Ramos 123, Cidade Arilisboa",
+  instagram: "@lisboasamuu",
+  instagramUrl: "https://www.instagram.com/lisboasamuu",
   openingHours: "Seg–sex, 9h–18h · sáb, 9h–13h",
   contactIsPlaceholder: false,
 } as const;
@@ -23,17 +23,17 @@ export const whatsappSupportActions = [
   {
     title: "Reagendar um horário",
     description: "Conte qual horário você reservou e qual nova data prefere.",
-    href: createWhatsappUrl("Olá! Gostaria de reagendar um horário na Clínica NS."),
+    href: createWhatsappUrl("Olá! Gostaria de reagendar um horário na Clínica Lisboa."),
   },
   {
     title: "Cancelar um agendamento",
     description: "Fale com a equipe para cancelar com segurança e confirmar a alteração.",
-    href: createWhatsappUrl("Olá! Gostaria de cancelar um agendamento na Clínica NS."),
+    href: createWhatsappUrl("Olá! Gostaria de cancelar um agendamento na Clínica Lisboa."),
   },
   {
     title: "Tirar uma dúvida",
     description: "Converse com a equipe sobre serviços, preparo ou atendimento.",
-    href: createWhatsappUrl("Olá! Tenho uma dúvida sobre os atendimentos da Clínica NS."),
+    href: createWhatsappUrl("Olá! Tenho uma dúvida sobre os atendimentos da Clínica Lisboa."),
   },
 ] as const;
 

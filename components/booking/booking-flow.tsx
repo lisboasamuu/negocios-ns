@@ -184,7 +184,7 @@ export function BookingFlow({ compact = false }: { compact?: boolean }) {
           <a className="button-primary justify-center" href={whatsappUrl} target="_blank" rel="noreferrer">
             Falar no WhatsApp <WhatsAppIcon className="size-5" />
           </a>
-          <Link className="button-secondary justify-center" href="/clinica-ns/">Voltar ao site</Link>
+          <Link className="button-secondary justify-center" href="/clinica-lisboa/">Voltar ao site</Link>
         </div>
       </section>
     );
@@ -226,7 +226,7 @@ export function BookingFlow({ compact = false }: { compact?: boolean }) {
                 {services.map((service) => (
                   <button key={service.id} type="button" className="choice-card text-left" onClick={() => chooseService(service.id)}>
                     <strong>{service.name}</strong>
-                    <span>{service.description || "Atendimento personalizado pela Clínica NS."}</span>
+                    <span>{service.description || "Atendimento personalizado pela Clínica Lisboa."}</span>
                     <small>{service.duration_minutes} min</small>
                   </button>
                 ))}

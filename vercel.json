@@ -2,17 +2,32 @@
   "redirects": [
     {
       "source": "/negocio-ns",
-      "destination": "/clinica-ns",
+      "destination": "/clinica-lisboa",
       "permanent": true
     },
     {
       "source": "/negocio-ns/agendar",
-      "destination": "/clinica-ns/agendar",
+      "destination": "/clinica-lisboa/agendar",
       "permanent": true
     },
     {
       "source": "/negocio-ns/agenda",
-      "destination": "/clinica-ns/agenda",
+      "destination": "/clinica-lisboa/agenda",
+      "permanent": true
+    },
+    {
+      "source": "/clinica-ns",
+      "destination": "/clinica-lisboa",
+      "permanent": true
+    },
+    {
+      "source": "/clinica-ns/agendar",
+      "destination": "/clinica-lisboa/agendar",
+      "permanent": true
+    },
+    {
+      "source": "/clinica-ns/agenda",
+      "destination": "/clinica-lisboa/agenda",
       "permanent": true
     }
   ]

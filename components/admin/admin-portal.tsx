@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
@@ -9,6 +8,7 @@ import { BlocksPanel } from "@/components/admin/blocks-panel";
 import { HoursPanel } from "@/components/admin/hours-panel";
 import { ManualBookingPanel } from "@/components/admin/manual-booking-panel";
 import { ServicesPanel } from "@/components/admin/services-panel";
+import { BrandLockup } from "@/components/brand-lockup";
 import { getSupabaseClient } from "@/lib/supabase/client";
 
 type Tab = "agenda" | "manual" | "services" | "hours" | "blocks";
@@ -92,16 +92,15 @@ export function AdminPortal() {
     return (
       <main className="grid min-h-svh place-items-center bg-aqua-soft p-4">
         <section className="booking-card w-full max-w-md">
-          <Link className="brand-mark rounded-md focus-ring" href="/clinica-ns/">
-            <Image className="brand-symbol" src="/favicon.svg" alt="" width={40} height={40} priority />
-            <span className="brand-name">Clínica <strong>NS</strong></span>
+          <Link className="brand-mark rounded-md focus-ring" href="/clinica-lisboa/">
+            <BrandLockup priority />
           </Link>
           <p className="eyebrow mt-8">Área restrita</p>
           <h1 className="mt-2 font-serif text-3xl text-ink">Acessar agenda</h1>
           <p className="mt-2 text-sm leading-6 text-muted">Entre com o usuário administrativo cadastrado. Não há cadastro público.</p>
           {error && <div className="form-alert mt-5" role="alert">{error}</div>}
           {!getSupabaseClient() ? (
-            <Link className="button-secondary mt-6 justify-center" href="/clinica-ns/">Voltar ao site</Link>
+            <Link className="button-secondary mt-6 justify-center" href="/clinica-lisboa/">Voltar ao site</Link>
           ) : (
             <form className="mt-6 grid gap-4" onSubmit={signIn}>
               <label className="field-label">E-mail
@@ -122,9 +121,8 @@ export function AdminPortal() {
     <main className="min-h-svh bg-canvas">
       <header className="border-b border-ink/10 bg-white">
         <div className="container-shell flex min-h-16 items-center gap-3 py-3">
-          <Link className="brand-mark mr-auto rounded-md focus-ring" href="/clinica-ns/">
-            <Image className="brand-symbol" src="/favicon.svg" alt="" width={40} height={40} priority />
-            <span className="brand-name">Clínica <strong>NS</strong></span>
+          <Link className="brand-mark mr-auto rounded-md focus-ring" href="/clinica-lisboa/">
+            <BrandLockup priority />
           </Link>
           <span className="hidden text-xs text-muted sm:block">{session.user.email}</span>
           <button className="admin-quiet-button" type="button" onClick={() => void signOut()}>Sair</button>

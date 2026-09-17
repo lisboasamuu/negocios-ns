@@ -39,9 +39,12 @@ describe("MVP 2.1 weekday availability contract", () => {
 describe("canonical route redirects", () => {
   it("declares permanent redirects for all legacy routes", () => {
     expect(redirects.redirects).toEqual(expect.arrayContaining([
-      { source: "/negocio-ns", destination: "/clinica-ns", permanent: true },
-      { source: "/negocio-ns/agendar", destination: "/clinica-ns/agendar", permanent: true },
-      { source: "/negocio-ns/agenda", destination: "/clinica-ns/agenda", permanent: true },
+      { source: "/negocio-ns", destination: "/clinica-lisboa", permanent: true },
+      { source: "/negocio-ns/agendar", destination: "/clinica-lisboa/agendar", permanent: true },
+      { source: "/negocio-ns/agenda", destination: "/clinica-lisboa/agenda", permanent: true },
+      { source: "/clinica-ns", destination: "/clinica-lisboa", permanent: true },
+      { source: "/clinica-ns/agendar", destination: "/clinica-lisboa/agendar", permanent: true },
+      { source: "/clinica-ns/agenda", destination: "/clinica-lisboa/agenda", permanent: true },
     ]));
   });
 
@@ -49,5 +52,6 @@ describe("canonical route redirects", () => {
     expect(fallbackRedirect).toContain("window.location.search");
     expect(fallbackRedirect).toContain("window.location.hash");
     expect(fallbackRedirect).toContain("window.location.replace");
+    expect(fallbackRedirect).toContain("/clinica-lisboa");
   });
 });
