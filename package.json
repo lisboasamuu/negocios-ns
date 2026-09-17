@@ -1,6 +1,6 @@
 {
-  "name": "clinica-ns",
-  "version": "0.2.1",
+  "name": "clinica-lisboa",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

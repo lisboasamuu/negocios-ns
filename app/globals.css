@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-canvas: #f7fbfc;
-  --color-aqua-soft: #edf7f8;
-  --color-aqua: #dff1f3;
-  --color-teal-light: #8ed4db;
-  --color-teal: #55b8c3;
-  --color-teal-dark: #287d87;
-  --color-ink: #16282c;
-  --color-muted: #64777b;
+  --color-canvas: #f8fbfa;
+  --color-aqua-soft: #eef7f4;
+  --color-aqua: #dcefe9;
+  --color-teal-light: #9bd2c8;
+  --color-teal: #4aa495;
+  --color-teal-dark: #1f6f65;
+  --color-ink: #18312f;
+  --color-muted: #667a77;
   --font-sans: Arial, Helvetica, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
-  --shadow-soft: 0 24px 70px rgba(22, 40, 44, 0.12);
+  --shadow-soft: 0 24px 70px rgba(24, 49, 47, 0.11);
 }
 
 :root {
@@ -25,14 +25,14 @@
 
 html {
   scroll-behavior: smooth;
-  background: #f7fbfc;
+  background: #f8fbfa;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
-  background: #f7fbfc;
-  color: #16282c;
+  background: #f8fbfa;
+  color: #18312f;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
@@ -45,8 +45,8 @@ button {
 }
 
 ::selection {
-  background: #b8e3e7;
-  color: #16282c;
+  background: #c5e7df;
+  color: #18312f;
 }
 
 .container-shell {
@@ -59,7 +59,7 @@ button {
 }
 
 .eyebrow {
-  color: #287d87;
+  color: #1f6f65;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -70,7 +70,7 @@ button {
 .hero-title,
 .section-title {
   font-family: Georgia, "Times New Roman", serif;
-  color: #16282c;
+  color: #18312f;
   font-weight: 400;
   letter-spacing: -0.045em;
   text-wrap: balance;
@@ -82,7 +82,7 @@ button {
 }
 
 .hero-title em {
-  color: #328d99;
+  color: #2f8f82;
   font-weight: 400;
 }
 
@@ -92,7 +92,7 @@ button {
 }
 
 .body-copy {
-  color: #64777b;
+  color: #667a77;
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -101,7 +101,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  color: #16282c;
+  color: #18312f;
   font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   font-size: 1.05rem;
   font-weight: 600;
@@ -115,10 +115,12 @@ button {
   height: 2rem;
   flex: 0 0 auto;
   border-radius: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 22px rgba(31, 111, 101, 0.2);
 }
 
 .brand-name strong {
-  color: #287d87;
+  color: #1f6f65;
   font: inherit;
 }
 
@@ -136,7 +138,7 @@ button {
   bottom: -0.45rem;
   left: 0;
   height: 1px;
-  background: #55b8c3;
+  background: #4aa495;
   content: "";
   transform: scaleX(0);
   transform-origin: right;
@@ -144,7 +146,7 @@ button {
 }
 
 .nav-link:hover {
-  color: #287d87;
+  color: #1f6f65;
 }
 
 .nav-link:hover::after {
@@ -174,14 +176,14 @@ button {
 }
 
 .button-primary {
-  border: 1px solid #328d99;
-  background: #328d99;
+  border: 1px solid #2f8f82;
+  background: #2f8f82;
   color: white;
   box-shadow: 0 12px 30px rgba(50, 141, 153, 0.2);
 }
 
 .button-primary:hover {
-  background: #287d87;
+  background: #1f6f65;
   box-shadow: 0 16px 36px rgba(50, 141, 153, 0.27);
   transform: translateY(-2px);
 }
@@ -193,9 +195,9 @@ button {
 }
 
 .button-secondary:hover {
-  border-color: #55b8c3;
+  border-color: #4aa495;
   background: white;
-  color: #287d87;
+  color: #1f6f65;
   transform: translateY(-2px);
 }
 
@@ -228,8 +230,21 @@ button:focus-visible {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 78% 22%, rgba(85, 184, 195, 0.14), transparent 29rem),
-    #f7fbfc;
+    radial-gradient(circle at 78% 22%, rgba(74, 164, 149, 0.16), transparent 29rem),
+    linear-gradient(145deg, #fbfdfc 0%, #f3f9f7 52%, #edf7f4 100%);
+}
+
+.hero-section::after {
+  position: absolute;
+  right: -2rem;
+  bottom: 2rem;
+  width: 14rem;
+  height: 14rem;
+  background-image: radial-gradient(circle, rgba(47, 143, 130, 0.18) 1px, transparent 1.5px);
+  background-size: 16px 16px;
+  content: "";
+  mask-image: linear-gradient(to bottom left, black, transparent 72%);
+  pointer-events: none;
 }
 
 .hero-section::before {
@@ -237,7 +252,7 @@ button:focus-visible {
   width: 24rem;
   height: 24rem;
   border-radius: 999px;
-  background: rgba(237, 247, 248, 0.85);
+  background: rgba(220, 239, 233, 0.72);
   content: "";
   filter: blur(2px);
   left: -12rem;
@@ -254,7 +269,7 @@ button:focus-visible {
 .hero-orbit {
   position: absolute;
   z-index: 0;
-  border: 1px solid rgba(85, 184, 195, 0.35);
+  border: 1px solid rgba(74, 164, 149, 0.34);
   border-radius: 999px;
   pointer-events: none;
 }
@@ -868,36 +883,42 @@ button:disabled {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .section-reveal {
-    animation: section-enter 560ms cubic-bezier(.2, .75, .25, 1) both;
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px) scale(0.99);
+    transition:
+      opacity 680ms cubic-bezier(.2, .75, .25, 1),
+      transform 680ms cubic-bezier(.2, .75, .25, 1);
   }
 
-  .treatment-card,
-  .journey-card,
-  .support-card {
-    animation: card-enter 480ms cubic-bezier(.2, .75, .25, 1) both;
+  .reveal-ready [data-reveal].is-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
-  .treatment-card:nth-child(2),
-  .journey-card:nth-child(2),
-  .support-card:nth-child(2) {
-    animation-delay: 70ms;
+  .reveal-ready .treatment-card:nth-child(2),
+  .reveal-ready .journey-card:nth-child(2),
+  .reveal-ready .support-card:nth-child(2) {
+    transition-delay: 80ms;
   }
 
-  .treatment-card:nth-child(3),
-  .journey-card:nth-child(3),
-  .support-card:nth-child(3) {
-    animation-delay: 140ms;
+  .reveal-ready .treatment-card:nth-child(3),
+  .reveal-ready .journey-card:nth-child(3),
+  .reveal-ready .support-card:nth-child(3) {
+    transition-delay: 160ms;
   }
 
-  @keyframes section-enter {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+  .hero-orbit-one {
+    animation: clinic-float 8s ease-in-out infinite;
   }
 
-  @keyframes card-enter {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  .hero-orbit-two {
+    animation: clinic-float 10s ease-in-out infinite reverse;
+  }
+
+  @keyframes clinic-float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -8px, 0); }
   }
 }
 

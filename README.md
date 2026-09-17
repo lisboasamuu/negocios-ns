@@ -1,12 +1,13 @@
-# Clínica NS — MVP 2.1
+# Clínica Lisboa — MVP 2.2
 
-Site mobile-first para uma clínica de estética fictícia, com landing page, agendamento online sem conta e painel administrativo protegido. O WhatsApp continua disponível como canal alternativo.
+Site mobile-first da Clínica Lisboa (uma clinica ficcticia criado por mim), com landing page, agendamento online sem conta e painel administrativo protegido. O WhatsApp continua disponível como canal alternativo.
 
 ## O que está incluído
 
-- Landing page responsiva em `/clinica-ns`, com atalhos de ajuda pelo WhatsApp.
-- Agendamento público em `/clinica-ns/agendar`: serviço, data, horário real, dados, revisão e confirmação.
-- Painel em `/clinica-ns/agenda`: agenda diária, detalhes, cancelamento lógico, cadastro manual, serviços, horários, disponibilidade semanal e bloqueios.
+- Landing page responsiva em `/clinica-lisboa`, com atalhos de ajuda pelo WhatsApp.
+- Agendamento público em `/clinica-lisboa/agendar`: serviço, data, horário real, dados, revisão e confirmação.
+- Painel em `/clinica-lisboa/agenda`: agenda diária, detalhes, cancelamento lógico, cadastro manual, serviços, horários, disponibilidade semanal e bloqueios.
+- Identidade Clínica Lisboa com monograma S e animações progressivas no scroll.
 - Regras por dia da semana no modo “todos os serviços” ou “serviços específicos”.
 - Autenticação administrativa pelo Supabase Auth, sem cadastro público.
 - PostgreSQL como fonte de verdade para disponibilidade e autorização.
@@ -28,11 +29,11 @@ Pagamentos não fazem parte deste MVP.
 
 | Rota | Acesso | Função |
 | --- | --- | --- |
-| `/clinica-ns` | Público | Site institucional e conversão |
-| `/clinica-ns/agendar` | Público | Agendamento sem conta |
-| `/clinica-ns/agenda` | Administrador | Gestão da clínica |
+| `/clinica-lisboa` | Público | Site institucional e conversão |
+| `/clinica-lisboa/agendar` | Público | Agendamento sem conta |
+| `/clinica-lisboa/agenda` | Administrador | Gestão da clínica |
 
-As rotas antigas em `/negocio-ns`, incluindo `/agendar` e `/agenda`, redirecionam permanentemente para o namespace canônico. Na Vercel isso é feito por `vercel.json`; o fallback do frontend preserva query string e hash em hospedagens estáticas.
+As rotas antigas em `/negocio-ns` e `/clinica-ns`, incluindo `/agendar` e `/agenda`, redirecionam permanentemente para o namespace canônico. Na Vercel isso é feito por `vercel.json`; o fallback do frontend preserva query string e hash em hospedagens estáticas.
 
 ## Configuração local
 
@@ -101,7 +102,7 @@ Não habilite cadastro público. Um usuário autenticado que não estiver em `ad
 npm run dev
 ```
 
-Acesse `http://localhost:3000/clinica-ns/`.
+Acesse `http://localhost:3000/clinica-lisboa/`.
 
 ## Validação
 
@@ -137,8 +138,9 @@ O build estático é gerado em `out/`. As variáveis `NEXT_PUBLIC_*` são incorp
 ## Estrutura principal
 
 ```text
-app/clinica-ns/             Rotas públicas canônicas
-app/negocio-ns/             Implementação compartilhada e fallback das rotas antigas
+app/clinica-lisboa/         Rotas públicas canônicas
+app/clinica-ns/             Compatibilidade com a rota anterior
+app/negocio-ns/             Implementação compartilhada e fallback legado
 components/
   booking/booking-flow.tsx
   admin/                    Agenda, disponibilidade e configurações
@@ -153,7 +155,7 @@ supabase/
 
 ## Personalização
 
-- Clínica e WhatsApp: `lib/business.ts`.
+- Clínica, WhatsApp, endereço e Instagram: `lib/business.ts`.
 - Conteúdo institucional: `lib/content.ts`.
 - Serviços e expediente iniciais: `supabase/seed.sql`.
 - Intervalo padrão da grade: registro único em `public.booking_settings`.
@@ -174,4 +176,4 @@ npm run test
 npm run build
 ```
 
-O endereço e o Instagram ficam em `lib/business.ts`. Os botões de reagendamento, cancelamento e dúvida apenas abrem mensagens prontas no WhatsApp; não alteram registros automaticamente.
+O endereço e o Instagram ficam em `lib/business.ts`. Os botões de reagendamento, cancelamento e dúvida apenas abrem mensagens prontas no WhatsApp; não alteram registros automaticamente!!
